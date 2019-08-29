@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import EditProduct from "../views/Notifications/Modals/EditSavingsProduct"
+// import EditProduct from "../views/Notifications/Modals/EditSavingsProduct"
 // import {connect} from 'react-redux'
 // import * as dateFns from "date-fns";
 
@@ -22,12 +22,6 @@ function SavingsProductRow(props) {
   // const savProdEditLink = `/savings-products/edits/${savingsProduct.productId}`
   const setEditingProduct = (product) => {
     props.EditProduct(product)
-    
-    // if(product){
-    //   editingProductId = product.productId
-    // }else {
-    //   editingProductId = null
-    // }
   }
 
 
@@ -42,7 +36,7 @@ function SavingsProductRow(props) {
     <tr key={savingsProduct.productId.toString()}>
       <td><Link to={savingsProductLink}>{savingsProduct.productName}</Link></td>
       <td> &#8358; {savingsProduct.moneyValue}</td>
-      <td>{savingsProduct.productDuration}</td>
+      <td>{savingsProduct.productDuration} <span>days</span></td>
       {/* <td><Link to={CustomerLink}><Badge color={getBadge(customer.status)}>{customer.status}</Badge></Link></td> */}
       <td>
       <Button color="primary" onClick={() => setEditingProduct(savingsProduct)}><i className="fa fa-edit"></i></Button>
@@ -103,7 +97,7 @@ class SavingsProductList extends Component {
                 </tbody>
               </Table>
               {/* {this.state.editingProductId ? <EditProduct productId={1} onCloseModal ={this.EditProduct} /> : <div></div> } */}
-              <EditProduct productId={1} onCloseModal ={this.EditProduct} />
+              {/* <EditProduct productId={1} onCloseModal ={this.EditProduct} /> */}
             </CardBody>
           </Card>
         </Col>

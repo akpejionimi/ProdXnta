@@ -23,8 +23,8 @@ import {
 import store from '../../../components/Store';
 import { addSub, addSubInit } from "../../../components/Store/actions/sub";
 import { getCustomers } from "../../../components/Store/actions/customer";
-// import CustomerList from "../../../components/CustomerList"
 import { getSavingsProduct } from "../../../components/Store/actions/savingsproduct";
+import AllSubscription from "../Subcription/AllSubscription"
 
 
 class AddSubcription extends Component {
@@ -229,6 +229,9 @@ class AddSubcription extends Component {
             </Card>
           </Col>
         </Row>
+        <div className="all-ubs-reated">
+            <AllSubscription/>
+      </div>
       </div>
     );
   }

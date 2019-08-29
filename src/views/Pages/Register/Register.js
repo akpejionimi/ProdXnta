@@ -141,11 +141,11 @@ class Register extends Component {
                           <i className="icon-lock"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="password" placeholder="Password" type="password" required="required"
+                      <Input type="password" placeholder="Password" required="required"
                       name="password"
                       id="password"
                       onChange={this.onChanged}
-                     autoComplete="new-password" />
+                      />
                     </InputGroup>
                     <InputGroup className="mb-4">
                       <InputGroupAddon addonType="prepend">

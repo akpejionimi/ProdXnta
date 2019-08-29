@@ -31,7 +31,7 @@ function CustomerRow(props) {
   }
   return (
     <tr key={customer.customerId.toString()}>
-      <th scope="row"><Link to={CustomerLink}>{customer.customerId}</Link></th>
+      {/* <th scope="row"><Link to={CustomerLink}>{customer.customerId}</Link></th> */}
       <td><Link to={CustomerLink}>{customer.fullName}</Link></td>
       <td>{customer.email}</td>
       <td>{customer.phoneNo}</td>
