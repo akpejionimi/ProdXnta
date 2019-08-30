@@ -15,6 +15,12 @@ export const getSavingsProductSuccess = savingsProducts => {
 	};
 };
 
+export const editSavingsProductSucess = () => {
+	return {
+		type: types.EDIT_SAVINGS_PRODUCT_SUCCESS
+	};
+}
+
 
 export const errorOccured = error => {
 	return {
@@ -72,20 +78,21 @@ export const editSavingsProductDone= () => {
 	};
 };
 
-export const editSavingsProduct = (savingsProductData) => {
+export const editSavingsProduct = (savingsProductData, productId) => {
 	return (dispatch, getState) => {
 		dispatch(loading());
-		const productId = getState().savingsProduct.savingsProduct.productId;
 
 		const config = {
 			headers: {"Content-Type": "application/json"}
 		};
+
 		axios
 			.put(`savings-product/edit/${productId}`, savingsProductData, config)
 			.then(res => {
 				return dispatch({ type: types.EDIT_SAVINGS_PRODUCT_SUCCESS, savingsProduct: res.data });
 			}).then(() => {
-				dispatch(editSavingsProductDone());
+				dispatch(editSavingsProductSucess());
+				dispatch(getSavingsProduct());
 			})
 			.catch(err => dispatch(errorOccured(err.res.data)));
 	};

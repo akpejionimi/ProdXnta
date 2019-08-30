@@ -12,9 +12,8 @@ import { getSavingsProduct } from "../../../components/Store/actions/savingsprod
 class AllSavingsProducts extends Component {
   componentDidMount() {
     this.props.onGetSavingsProduct();
-    console.log(this);
-    
   }
+  
   render() {
     return (
       <div className="animated fadeIn">
