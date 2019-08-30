@@ -121,7 +121,7 @@ export const addSavingsProduct =  savingsProductData => {
 				return dispatch({ type: types.ADD_SAVINGS_PRODUCT_SUCCESS, savingsProduct: res.data});
 			})
 			.then(() => {
-				dispatch(addSavingsProductInit());
+				dispatch(getSavingsProduct());
 			})
 			.catch(err => dispatch(errorOccured(err.res.data)));
 			

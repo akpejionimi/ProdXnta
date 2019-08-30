@@ -6,6 +6,7 @@ import staffReducer from "./staffReducer";
 import savingsProductReducer from "./savingsProduct";
 import subsciptionReducer from "./sub";
 import operatorReducer from "./operator";
+import paymentReducer from "./payment";
 
 
 
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     staff: staffReducer,
     savingsProduct: savingsProductReducer,
     prodSub: subsciptionReducer,
-    operator: operatorReducer
+    operator: operatorReducer,
+    payment: paymentReducer
 
 });
 

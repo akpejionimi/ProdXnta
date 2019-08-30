@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
-// import EditProduct from "../views/Notifications/Modals/EditSavingsProduct"
 // import {connect} from 'react-redux'
 // import * as dateFns from "date-fns";
 
@@ -17,12 +16,8 @@ import {
 
 
 function SubscriptionRow(props) {
-
   const prodSub = props.prodSub
-  console.log(props);
-  console.log(prodSub.Customer.fullName);
-  
-
+ 
   return (
     <tr key={prodSub.productId.toString()}>
       <td>{prodSub.Customer.fullName}</td>
@@ -40,7 +35,6 @@ class SubscriptionList extends Component {
     super(props);
     this.state = { }
   }
-  
 
   render() {
     return (
@@ -58,7 +52,6 @@ class SubscriptionList extends Component {
                     <th scope="col">Product Name</th>
                     <th scope="col">SignUp Date</th>
                     <th scope="col">Actions</th>
-
                   </tr>
                 </thead>
                 <tbody>

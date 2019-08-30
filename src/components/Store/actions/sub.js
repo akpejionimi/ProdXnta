@@ -78,7 +78,7 @@ export const addSub = prodSubData => {
 				return dispatch({ type: types.ADD_SUB_SUCCESS });
 			})
 			.then(() => {
-				dispatch(addSubInit());
+				dispatch(getSubs());
 			})
 			.catch(err => dispatch(errorOccured(err.response.data)));
 			

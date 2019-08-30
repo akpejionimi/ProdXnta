@@ -200,7 +200,7 @@ class Modals extends Component {
                                   Created Successfully!
                                 </ModalBody>
                                 <ModalFooter>
-                                  <Button color="secondary" onClick={this.toggleSuccess}>Ok</Button>
+                                  <Button color="secondary" onClick={this.toggleSuccess && this.toggleLarge}>Ok</Button>
                                 </ModalFooter>
                               </Modal>
                             </CardBody>
@@ -222,7 +222,7 @@ class Modals extends Component {
                    <AllSavingsProduct/>
                   </ModalBody>
                   <ModalFooter>
-                    <Button color="secondary" onClick={this.toggleLargeView}>Cancel</Button>
+                    <Button color="secondary" onClick={this.toggleLargeView }>Cancel</Button>
                   </ModalFooter>
                 </Modal>
               </CardBody>

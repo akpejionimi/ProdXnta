@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 // import EditProduct from "../views/Notifications/Modals/EditSavingsProduct"
 // import {connect} from 'react-redux'
-// import * as dateFns from "date-fns";
 
 import {
   Card,
   CardBody,
-  //   Badge,
   Row,
   Col,
   CardHeader,
@@ -25,13 +23,6 @@ function SavingsProductRow(props) {
   }
 
 
-  // const getBadge = (status) => {
-  //   return status === 'Active' ? 'success' :
-  //     status === 'Inactive' ? 'secondary' :
-  //       status === 'Pending' ? 'warning' :
-  //         // entryDate === 'Banned' ? 'danger' :
-  //           'primary'
-  // }
   return (
     <tr key={savingsProduct.productId.toString()}>
       <td><Link to={savingsProductLink}>{savingsProduct.productName}</Link></td>
@@ -41,7 +32,7 @@ function SavingsProductRow(props) {
       <td>
       <Button color="primary" onClick={() => setEditingProduct(savingsProduct)}><i className="fa fa-edit"></i></Button>
         {/* <Link to={savProdEditLink}><Button color="primary"><i className= "fa fa-edit"></i></Button></Link> */}
-        {/* <Button onClick={() => props.removeCustomer(customer)} color="danger">Remove</Button> */}
+    
       </td>
     </tr>
   )
