@@ -13,32 +13,34 @@ import {
     Table
 } from "reactstrap";
 
-import { getSingleSavingsProduct } from "../../../components/Store/actions/savingsproduct";
+import { getSingleSub } from "../../../components/Store/actions/sub";
 
-class SavingsProductDetails extends Component {
+class subscriptionDetail extends Component {
     componentDidMount = () => {
-        const productId = +this.props.match.params.productId;
-        this.props.onGetSingleSavingsProduct(productId);
-        console.log(productId);
+        const prodSubId = +this.props.match.params.prodSubId;
+        this.props.onGetSingleSub(prodSubId);
+        console.log(prodSubId);
         
+
     };
  
     render() {
         const btnStyle = {
             float: 'right',
+           
           };
-        // const {savingsProduct} = savingsProduct.find(savingsProduct => savingsProduct.productId.toString() === this.props.match.params.productId)
-        const { savingsProduct } = this.props;
+        // const {prodSub} = prodSub.find(prodSub => prodSub.prodSubId.toString() === this.props.match.params.prodSubId)
+        const {sub } = this.props;
+        console.log(sub);
         
-        
-        const savingsProductDetail = savingsProduct ? Object.entries(savingsProduct) : [['productId', (<span><i className="text-muted icon-ban"></i> Not found</span>)]]
+        const subscriptionDetail = sub ? Object.entries(sub) : [['prodSubId', (<span><i className="text-muted icon-ban"></i> Not found</span>)]]
         return (
             <div className="animated fadeIn">
                 <Row>
                     <Col lg={{ size: 6, offset: 3 }} >
                         <Card>
                             <CardHeader className="tx-right">
-                                <Link to={`/savings-products/edits/${this.props.match.params.productId}`}><Button style={btnStyle} color="outline-primary" size="lg">Edit Product</Button></Link>
+                                <Link to={`/products/edit/${this.props.match.params.prodSubId}`}><Button style={btnStyle} color="outline-primary" size="lg">Edit Subscription</Button></Link>
 
                             </CardHeader>
                             <CardBody>
@@ -52,7 +54,7 @@ class SavingsProductDetails extends Component {
                                             <Table responsive striped hover>
                                                 <tbody>
                                                     {
-                                                        savingsProductDetail.map(([key, value]) => {
+                                                        subscriptionDetail.map(([key, value]) => {
                                                             return (
 
                                                                 <tr key={key}>
@@ -81,15 +83,15 @@ class SavingsProductDetails extends Component {
 }
 
 const mapStateToProps = state => ({
-    savingsProduct: state.savingsProduct.savingsProduct,
-    isLoading: state.savingsProduct.isLoading
+    sub: state.prodSub.prodSub,
+    isLoading: state.prodSub.isLoading
 });
 
 const mapDispatchToProps = dispatch => ({
-    onGetSingleSavingsProduct : productId => dispatch(getSingleSavingsProduct(productId))
+    onGetSingleSub:prodSubId => dispatch(getSingleSub(prodSubId))
 });
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(SavingsProductDetails);
+)(subscriptionDetail);

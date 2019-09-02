@@ -15,11 +15,14 @@ const CustomerDetails =React.lazy(() => import('./views/Icons/FontAwesome/Custom
 const EditCustomer =React.lazy(() => import('./views/Icons/Add-customer/EditCustomer'));
 // const DeleteCustomer =React.lazy(() => import('./views/Icons/FontAwesome/DeleteCustomer'));
 
-const AddSubcription = React.lazy(() => import('./views/Notifications/Subcription/AddSubcription'));
 const Badges = React.lazy(() => import('./views/Notifications/Badges'));
 const Modals = React.lazy(() => import('./views/Notifications/Modals'));
-const SavingsProductDetails = React.lazy(() => import ('./views/Notifications/Modals/savingsProductDetails'))
-const EditSavingsProduct = React.lazy(() => import ('./views/Notifications/Modals/EditSavingsProduct'))
+const SavingsProductDetails = React.lazy(() => import ('./views/Notifications/Modals/savingsProductDetails'));
+const EditSavingsProduct = React.lazy(() => import ('./views/Notifications/Modals/EditSavingsProduct'));
+
+//Subscription
+const AddSubcription = React.lazy(() => import('./views/Notifications/Subcription/AddSubcription'));
+const SubscriptionDetails = React.lazy(() => import('./views/Notifications/Subcription/SubscriptionDetails'));
 
 const Users = React.lazy(() => import('./views/Users/Users'));
 const User = React.lazy(() => import('./views/Users/User'));
@@ -46,11 +49,15 @@ const routes = [
 
   //Products
   { path: '/product', exact: true, name: 'Products', component: AddSubcription }, 
-  { path: '/products/subscription', name: 'Product Subscription', component: AddSubcription },
   { path: '/product/product-payment', name: 'Product Payments', component: Badges },
   { path: '/product/product-savings', name: 'Product Savings', component: Modals },
   { path: '/savings-product/:productId', name: 'Product Details', component: SavingsProductDetails },
   { path: '/savings-products/edits/:productId', name: 'Edit Product', component: EditSavingsProduct },
+  
+  
+  //Subscription Routes
+  { path: '/products/subscription', name: 'Product Subscription', component: AddSubcription },
+  { path: '/products/details/:prodSubId', name: 'Subscription Details', component: SubscriptionDetails },
 
 
   { path: '/settings', name: 'Settings', component: Charts },

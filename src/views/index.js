@@ -5,21 +5,22 @@ import {
 import Charts from './Charts';
 import Dashboard from './Dashboard';
 import { AllCustomers, FontAwesome, SimpleLineIcons,AddCustomer, CustomerDetails } from './Icons';
-import { AddSubcription, Badges, Modals } from './Notifications';
+import { AddSubcription, Badges, Modals , SubscriptionDetails} from './Notifications';
 import { Login, Page404, Page500, Register } from './Pages';
 
 
 export {
   AddCustomer,
+  AllCustomers,
   CustomerDetails,
   Badges,
-  AllCustomers,
   Page404,
   Page500,
   Register,
   Login,
   Modals,
   AddSubcription,
+  SubscriptionDetails,
   SimpleLineIcons,
   FontAwesome,
   Charts,

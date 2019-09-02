@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import {connect} from 'react-redux'
 // import * as dateFns from "date-fns";
 
@@ -17,10 +17,11 @@ import {
 
 function SubscriptionRow(props) {
   const prodSub = props.prodSub
+  const prodSubLink = `/products/details/${prodSub.prodSubId}`
  
   return (
     <tr key={prodSub.productId.toString()}>
-      <td>{prodSub.Customer.fullName}</td>
+      <td><Link to={prodSubLink}>{prodSub.Customer.fullName}</Link></td>
       <td>{prodSub.Savings_Product.productName}</td>
       <td>{prodSub.signUpDate}</td>
       <td>

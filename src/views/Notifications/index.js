@@ -3,6 +3,7 @@ import Badges from './Badges';
 import Modals from './Modals';
 import SavingsProductDetails from "./Modals/savingsProductDetails";
 import EditSavingsProuct from "./Modals/EditSavingsProduct"
+import SubscriptionDetails from "./Subcription/SubscriptionDetails"
 
 export {
   Alerts,
@@ -10,5 +11,6 @@ export {
   Modals,
   SavingsProductDetails,
   EditSavingsProuct,
-  AddSubcription
+  AddSubcription,
+  SubscriptionDetails
 };
