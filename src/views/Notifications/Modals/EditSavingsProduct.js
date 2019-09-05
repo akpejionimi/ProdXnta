@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import * as dateFns from 'date-fns';
 // import Sub from '../../../subs'
-import { Redirect } from "react-router-dom";
-
 import {
     Button,
     Card,
@@ -23,87 +21,18 @@ import {
     Container,
     Form,
 } from 'reactstrap';
-
-import store from '../../../components/Store';
 import { editSavingsProduct, editSavingsProductInit } from "../../../components/Store/actions/savingsproduct";
 
 class EditProduct extends Component {
-    storeSubscription;
     constructor(props) {
         super(props);
+
         this.state = {
-            modal: false,
-            large: false,
-            largeView: false,
-            productName: "",
-            moneyValue: "",
-            productDuration: "",
-            success: false
+            editMode: true,
+            productName: this.props.savingsProduct.productName,
+            moneyValue: this.props.savingsProduct.moneyValue,
+            productDuration: this.props.savingsProduct.productDuration
         }
-
-        this.toggle = this.toggle.bind(this);
-        this.toggleLarge = this.toggleLarge.bind(this);
-        this.toggleLargeView = this.toggleLargeView.bind(this);
-        this.toggleSuccess = this.toggleSuccess.bind(this);
-       
-        
-    }
-    componentDidMount = () => {
-        const productId = this.props.productId
-        this.props.onEditSavingsProductInit(productId);
-        // this.toggleLarge();
-        // console.log(productId);
-        
-        
-
-        this.storeSubscription = store.subscribe(() => {
-
-            const savingsProduct = store.getState().savingsProduct.savingsProduct
-            if (savingsProduct) {
-                console.log(savingsProduct);
-                this.setState({
-                    productName: savingsProduct.productName,
-                    productDuration: savingsProduct.productDuration,
-                    moneyValue: savingsProduct.moneyValue,
-                })
-            }
-        });
-
-        // this.sub = new Sub()
-        // this.sub.subscribe("savingsProduct.savingsProduct", (value) => {
-        //     // console.log(value);
-        // });
-    };
-    componentWillUnmount() {
-        this.storeSubscription();
-        // this.sub.unSubscribe('savingsProduct.savingsProduct');
-    }
-
-    toggleSuccess() {
-        this.setState({
-            success: !this.state.success,
-        });
-    }
-
-    toggle() {
-        this.setState({
-            modal: !this.state.modal,
-        });
-    }
-
-    toggleLarge() {
-        // this.setState({
-        //     large: !this.state.large,
-        // });
-        // this.props.onCloseModal()
-        console.log(this);
-   
-    }
-
-    toggleLargeView() {
-        this.setState({
-            largeView: !this.state.largeView,
-        });
     }
 
     onChanged = e => {
@@ -112,34 +41,30 @@ class EditProduct extends Component {
         });
     };
 
-
     save = e => {
         e.preventDefault();
         const formData = {
             productName: this.state.productName,
             productDuration: this.state.productDuration,
-            moneyValue: this.state.moneyValue,
+            moneyValue: this.state.moneyValue
         };
-        this.props.onEditSavingsProduct(JSON.stringify(formData));
-        console.log(formData);
 
+        this.props.onEditSavingsProduct(JSON.stringify(formData), this.props.savingsProduct.productId);
     };
-    render() {
 
+    render() {
         return (
             <div className="animated fadeIn">
-               
-                <Modal isOpen={this.state.large } toggle={this.toggleLarge}
+                <Modal isOpen={this.state.editMode} toggle={this.props.onCloseModal}
                     className={'modal-lg ' + this.props.className}>
-                    <ModalHeader toggle={this.toggleLarge}>Product</ModalHeader>
+                    <ModalHeader toggle={this.props.onCloseModal}>Product</ModalHeader>
                     <ModalBody>
                         <Container className="card-design">
                             <Row>
                                 <Col md={{ size: 12 }}>
                                     <Card>
                                         <CardHeader tag="h2">Edit Product</CardHeader>
-                                        <CardBody>
-                                            {this.props.savingsProductUpdated && <Redirect to={`/savings-product/${this.props.savingsProduct.productId}`} />}
+                                        <CardBody>                                            
                                             <Form onSubmit={this.save} action="POST" encType="application/json">
                                                 {this.props.error && (
                                                     < Alert color="danger">{this.props.error.msg}</Alert>
@@ -218,16 +143,25 @@ class EditProduct extends Component {
                         </Container>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="secondary" onClick={this.toggleLarge}>Cancel</Button>
+                        <Button color="secondary" onClick={this.props.onCloseModal}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
+
+                <Modal isOpen={this.props.savingsProductUpdated} toggle={this.props.onCloseModal}
+                    className={'modal-success ' + this.props.className}>
+                    <ModalHeader toggle={this.toggleSuccess}>DONE</ModalHeader>
+                    <ModalBody>
+                        Update Successful!
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="secondary" onClick={this.props.onCloseModal}>Ok</Button>
                     </ModalFooter>
                 </Modal>
             </div>
-
         )
     }
 }
 const mapStateToProps = state => ({
-    savingsProduct: state.savingsProduct.savingsProduct,
     isLoading: state.savingsProduct.isLoading,
     savingsProductUpdated: state.savingsProduct.savingsProductUpdated,
     error: state.savingsProduct.error
@@ -235,7 +169,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     onEditSavingsProductInit: (productId) => dispatch(editSavingsProductInit(productId)),
-    onEditSavingsProduct: savingsProductData => dispatch(editSavingsProduct(savingsProductData))
+    onEditSavingsProduct: (savingsProductData, productId) => dispatch(editSavingsProduct(savingsProductData, productId))
 });
 
 export default connect(

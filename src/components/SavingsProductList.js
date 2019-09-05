@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-// import EditProduct from "../views/Notifications/Modals/EditSavingsProduct"
+import EditProduct from "../views/Notifications/Modals/EditSavingsProduct";
 // import {connect} from 'react-redux'
 
 import {
@@ -30,9 +30,9 @@ function SavingsProductRow(props) {
       <td>{savingsProduct.productDuration} <span>days</span></td>
       {/* <td><Link to={CustomerLink}><Badge color={getBadge(customer.status)}>{customer.status}</Badge></Link></td> */}
       <td>
-      <Button color="primary" onClick={() => setEditingProduct(savingsProduct)}><i className="fa fa-edit"></i></Button>
+        <Button color="primary" onClick={() => setEditingProduct(savingsProduct)}><i className="fa fa-edit"></i></Button>
         {/* <Link to={savProdEditLink}><Button color="primary"><i className= "fa fa-edit"></i></Button></Link> */}
-    
+
       </td>
     </tr>
   )
@@ -44,21 +44,15 @@ class SavingsProductList extends Component {
     this.state = {
       editingProductId: null
     }
-      this.EditProduct = this.EditProduct.bind(this)
-    // this.removeCustomer = this.removeCustomer.bind(this)
-  }
-  //   removeCustomer (customer) {
-  //     console.log(this.props);
 
-  //     this.props.onDeleteCustomer(customer.customerId)
-  //   }
-  EditProduct(product){
-    console.log(product);
+    this.EditProduct = this.EditProduct.bind(this);
+  }
+
+  EditProduct(product) {    
     this.setState({
-      editingProductId: product ? product.productId : null
-    })
+      editingProduct: product && product.productId ? product : null
+    });
   }
-
 
   render() {
     return (
@@ -87,8 +81,11 @@ class SavingsProductList extends Component {
                   )}
                 </tbody>
               </Table>
-              {/* {this.state.editingProductId ? <EditProduct productId={1} onCloseModal ={this.EditProduct} /> : <div></div> } */}
-              {/* <EditProduct productId={1} onCloseModal ={this.EditProduct} /> */}
+
+              {this.state.editingProduct
+                && <EditProduct savingsProduct={this.state.editingProduct} onCloseModal={this.EditProduct} />}
+
+              {/* <EditProduct savingsProduct={this.props.savingsProducts[0]} onCloseModal={this.EditProduct} />  */}
             </CardBody>
           </Card>
         </Col>
